@@ -6,6 +6,8 @@
 !*.yaml
 !.gitignore
 !*.md
+!esphome
+!custom_component
 
 # Ignore folders.
 .storage
