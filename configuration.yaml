@@ -1,0 +1,32 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+
+####################################################
+#      LINKS TO INDIVUAL CONFIGURATION FILES       #
+####################################################
+
+#https://home-assistant.io/docs/configuration/splitting_configuration/
+
+recorder: !include recorder.yaml
+influxdb: !include influxdb.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+switch: !include switches.yaml
+climate: !include climates.yaml
+speedtestdotnet: !include speedtestdotnet.yaml
+
+####################################################
+#                    SMART IR                      #
+####################################################
+
+#https://github.com/smartHomeHub/SmartIR
+
+smartir:
