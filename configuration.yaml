@@ -30,3 +30,14 @@ speedtestdotnet: !include speedtestdotnet.yaml
 #https://github.com/smartHomeHub/SmartIR
 
 smartir:
+
+####################################################
+#               Generic IP Camera                  #
+####################################################
+
+#https://www.home-assistant.io/integrations/generic_ip_camera
+# camera:
+#   - platform: generic
+#     still_image_url: http://10.0.0.141:8080/photoaf.jpg
+#     verify_ssl: false
+#     name: watermeter
