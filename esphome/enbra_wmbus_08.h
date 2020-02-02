@@ -1,13 +1,15 @@
 #include "esphome.h"
 #include <Chrono.h>
 
+using namespace std;
+
 class EnbraWmbus08 : public Component, public uart::UARTDevice, public Sensor
 {
 public:
     // constructor
     EnbraWmbus08(uart::UARTComponent *parent) : uart::UARTDevice(parent) {}
 
-    //char serialNumberInitial[8] = "000A06A4";
+    //char serialNumberInitial[8] = "000A06A4\0";
     uint8_t temp_byte = 0;
     uint8_t *temp_byte_pointer = &temp_byte;
     uint8_t uart_buffer_[512]{0};
@@ -15,11 +17,14 @@ public:
     char uart_message[550];
     char temp_string[10];
 
+    std::string msg;
+
     Chrono myChrono;
 
     void setup() override
     {
         // This will be called by App.setup()
+        // msg = fmt::format("{:#02X}", 68);
     }
 
     void loop() override

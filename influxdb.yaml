@@ -17,6 +17,9 @@
         - sensor.blitzwolf_shp6_03_voltage        
         - sensor.blitzwolf_shp6_03_wattage
         - sensor.blitzwolf_shp6_03_amperage
+        - sensor.blitzwolf_shp6_04_voltage
+        - sensor.blitzwolf_shp6_04_wattage
+        - sensor.blitzwolf_shp6_04_amperage
         - binary_sensor.motion_sensor
         - sensor.disk_free
         - sensor.disk_use
@@ -40,3 +43,4 @@
         - device_tracker.life360_sarka
         - device_tracker.life360_rudik
         - device_tracker.life360_lojzik
+        - sensor.water_consumption
