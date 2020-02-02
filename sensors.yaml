@@ -41,3 +41,14 @@
     name: Latest version
     value_template: "{{ value_json.info.version }}"
     scan_interval: 3600
+
+    
+####################################################
+#       Integration - Riemann sum integral         #
+####################################################    
+
+#https://www.home-assistant.io/integrations/integration
+
+  - platform: integration
+    source: sensor.water_consumption
+    name: water_consumed    

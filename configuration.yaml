@@ -24,6 +24,24 @@ climate: !include climates.yaml
 speedtestdotnet: !include speedtestdotnet.yaml
 
 ####################################################
+#                 Utility Meter                    #
+####################################################
+
+#https://www.home-assistant.io/integrations/utility_meter/
+
+utility_meter:
+  hourly_water_consumption:
+    source: sensor.water_consumption
+    cycle: hourly
+  daily_water_consumption:
+    source: sensor.water_consumption
+    cycle: daily
+  monthly_water_consumption:
+    source: sensor.water_consumption
+    cycle: monthly    
+
+
+####################################################
 #                    SMART IR                      #
 ####################################################
 

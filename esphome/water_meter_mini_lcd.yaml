@@ -50,6 +50,7 @@ sensor:
 #    name: "Water consumption 2"
 #    unit_of_measurement: l
 #    accuracy_decimals: 0
+
 - platform: bme280
   temperature:
     name: "BME Temperature"
