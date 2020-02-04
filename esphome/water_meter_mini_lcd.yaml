@@ -67,7 +67,7 @@ sensor:
 
 - platform: custom
   lambda: |-
-    auto enbra_sensor = new EnbraWmbus08(id(uart_bus));
+    auto enbra_sensor = new EnbraWmbus08(id(uart_bus), "000A06A4");
     App.register_component(enbra_sensor);
     return {enbra_sensor};
   sensors:

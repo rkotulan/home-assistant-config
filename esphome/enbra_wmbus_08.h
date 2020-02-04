@@ -7,24 +7,24 @@ class EnbraWmbus08 : public Component, public uart::UARTDevice, public Sensor
 {
 public:
     // constructor
-    EnbraWmbus08(uart::UARTComponent *parent) : uart::UARTDevice(parent) {}
+    EnbraWmbus08(uart::UARTComponent *parent, std::string wm_address) : uart::UARTDevice(parent) {
+        strcpy(serialNumberInitial, wm_address.c_str());
+    }
 
-    //char serialNumberInitial[8] = "000A06A4\0";
+    char serialNumberInitial[10];
+    char serialNumber[10];
     uint8_t temp_byte = 0;
     uint8_t *temp_byte_pointer = &temp_byte;
     uint8_t uart_buffer_[512]{0};
     uint16_t uart_counter = 0;
     char uart_message[550];
-    char temp_string[10];
-
-    std::string msg;
+    char temp_string[10];    
 
     Chrono myChrono;
 
     void setup() override
     {
         // This will be called by App.setup()
-        // msg = fmt::format("{:#02X}", 68);
     }
 
     void loop() override
@@ -34,8 +34,8 @@ public:
 
     bool read_message()
     {
-        if (myChrono.hasPassed(50))
-        {                       // elapsed(50) returns 1 if 50ms have passed.
+        if (myChrono.hasPassed(70)) // run if 70ms have passed.
+        {                       
             myChrono.restart(); // restart the Chrono
 
             uart_message[0] = '\0';
@@ -79,8 +79,7 @@ public:
         uint8_t telegramLength = uart_buffer_[0];
         uint8_t operation = uart_buffer_[1];
         uint8_t manufacturer01 = uart_buffer_[2];
-        uint8_t manufacturer02 = uart_buffer_[3];
-        char serialNumber[8];
+        uint8_t manufacturer02 = uart_buffer_[3];        
         char consuption[8];
 
         ESP_LOGD("telegram", "Telegram length: %d", telegramLength);
@@ -120,16 +119,12 @@ public:
             uint32_t consuptionNumber;
             sscanf(consuption, "%x", &consuptionNumber);
             consuptionNumber = consuptionNumber / 3;
-
-            // 000A06A4
-            if (uart_buffer_[7] == 0x00 &&
-                uart_buffer_[6] == 0x0A &&
-                uart_buffer_[5] == 0x06 &&
-                uart_buffer_[4] == 0xA4)
+            
+            if(strcmp(serialNumberInitial, serialNumber) == 0)
             {
                 publish_state(consuptionNumber);
             }
-
+            
             ESP_LOGD("telegram", "Consumption: %d", consuptionNumber);
         }
     }

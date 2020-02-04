@@ -1,11 +1,11 @@
 # Blitzwolf SHP6 15A Power Monitoring Plug
 # https://templates.blakadder.com/blitzwolf_SHP6-15A.html
 substitutions:
-  plug_name: blitzwolf_shp6_04
+  plug_name: blitzwolf_shp6_05
   # Higher value gives lower watt readout
   current_res: '0.00122'
   # Lower value gives lower voltage readout
-  voltage_div: '761'
+  voltage_div: '768'
 
 esphome:
   name: ${plug_name}
@@ -82,16 +82,14 @@ sensor:
       filters:
         # Map from sensor -> measured value
         - calibrate_linear:
-           - 0.0 -> 0.013
-           - 1.66215 -> 1.652
-           - 2.58030 -> 2.558
-           - 2.93647 -> 2.919
-           - 5.19621 -> 5.161
-           - 9.36743 -> 9.290
+            - 0.0 -> 0.013
+            - 1.66215 -> 1.645
+            - 2.93647 -> 2.920
+            - 9.33577 -> 9.261
             
         # Make everything below 0.01A appear as just 0A.
         # Furthermore it corrects 0.013A for the power usage of the plug.
-        - lambda: if (x < (0.01 - 0.013)) return 0; else return (x - 0.013);      
+        - lambda: if (x < (0.01 - 0.013)) return 0; else return (x - 0.013);
     voltage:
       name: "${plug_name}_Voltage"
       unit_of_measurement: 'V'
@@ -110,15 +108,13 @@ sensor:
         # Map from sensor -> measured value
         - calibrate_linear:
             - 0.0 -> 1.14
-            - 696.15808 -> 354.5
-            - 1081.28625 -> 548.5
-            - 1350.23547 -> 686.7
-            - 2326.32056 -> 1182.0
-            - 4213.54004 -> 2140.0
+            - 695.17603 -> 352.5
+            - 1354.34692 -> 686.3
+            - 4212.60010 -> 2123.0
            
         # Make everything below 2W appear as just 0W.
         # Furthermore it corrects 1.14W for the power usage of the plug.
-        - lambda: if (x < (2 + 1.14)) return 0; else return (x - 1.14);               
+        - lambda: if (x < (2 + 1.14)) return 0; else return (x - 1.14);            
     change_mode_every: 3
     update_interval: 3s
   - platform: total_daily_energy

@@ -4,7 +4,7 @@
 
 #https://www.home-assistant.io/integrations/recorder/
 
-  db_url: mysql://hass:B@2jeker@core-mariadb/homeassistant?charset=utf8
+  db_url: mysql://hass:Ba2jeker@core-mariadb/homeassistant?charset=utf8
   purge_keep_days: 14
   purge_interval: 1
   exclude:
@@ -24,6 +24,10 @@
       - sensor.blitzwolf_shp6_01_uptime_sensor
       - sensor.blitzwolf_shp6_02_uptime_sensor
       - sensor.blitzwolf_shp6_03_uptime_sensor
+      - sensor.blitzwolf_shp6_04_uptime_sensor
+      - sensor.blitzwolf_shp6_05_uptime_sensor
       - binary_sensor.blitzwolf_shp6_01_button
       - binary_sensor.blitzwolf_shp6_02_button
       - binary_sensor.blitzwolf_shp6_03_button
+      - binary_sensor.blitzwolf_shp6_04_button
+      - binary_sensor.blitzwolf_shp6_05_button
